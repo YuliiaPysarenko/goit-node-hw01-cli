@@ -9,14 +9,12 @@ async function listContacts () {
     const data = JSON.parse(dataString);
     return data;
 }
-// listContacts().then(value => console.log(value));
 
 async function getContactById (contactId) {
     const allContacts = await listContacts();
     const contact = allContacts.find(contact => contact.id === contactId.toString());
     return contact ? contact : null;
 }
-// getContactById('48bd1cd8-72ca-42cc-8457-156bb8c30873').then(value => console.log(value));
 
 async function removeContact (contactId) {
     const allContacts = await listContacts();
@@ -30,9 +28,6 @@ async function removeContact (contactId) {
     return deletedContact ? deletedContact : null;
 }
 
-// deleteById(
-//     'cf050c0e-3bac-4a51-9557-58e4b7fe3359');
-
 async function addContact (name, email, phone) {
     const newContact = {
         id: uuidv4(),
@@ -45,7 +40,6 @@ async function addContact (name, email, phone) {
 
     await fs.writeFile(contactsPath, JSON.stringify(allContacts));
 }
-// addContact(4500, 'mango');
 
 module.exports = {
     getContactById, listContacts, removeContact, addContact
